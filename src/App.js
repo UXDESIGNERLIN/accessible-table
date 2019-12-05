@@ -1,26 +1,114 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Rows from "./Rows";
+import "./App.css";
+import MultiDropDown from "./MultiDropDown";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    submissions: [
+      {
+        name: "cat",
+        date: 12234,
+        sourceLang: "en",
+        targetLang: "to"
+      },
+      {
+        name: "pig",
+        date: 3456,
+        sourceLang: "ko",
+        targetLang: "op",
+        files: [{ fileName: "piggy", type: "small" }]
+      },
+      {
+        name: "fish",
+        date: 3456,
+        sourceLang: "ko",
+        targetLang: "op"
+      },
+      {
+        name: "dog",
+        date: 3456,
+        sourceLang: "ko",
+        targetLang: "op",
+        files: [
+          { fileName: "doggy", type: "small" },
+          { fileName: "puppy", type: "supersmall" }
+        ]
+      },
+      {
+        name: "spider",
+        date: 3456,
+        sourceLang: "ko",
+        targetLang: "op"
+      }
+    ],
+    styleFocus: false
+  };
+  handleFocus = () => {
+    this.setState({ styleFocus: !this.state.styleFocus });
+  };
+  render() {
+    const { name, date, sourceLang, targetLang } = this.state;
+    return (
+      <div className="App">
+        <head>
+          <h1>table</h1>
+        </head>
+        <body>
+          <table
+            className="focus"
+            tabIndex="0"
+            style={{ width: "80%" }}
+            summary={"translated files row"}
+          >
+            <thead>
+              <tr>
+                <th tabIndex="0" scope="col">
+                  FileOrFolder
+                </th>
+                <th
+                  style={this.state.styleFocus ? { outline: "none" } : {}}
+                  tabIndex="0"
+                  scope="col"
+                  className="cell"
+                  onClick={this.handleFocus}
+                >
+                  Name
+                </th>
+                <th tabIndex="0" scope="col" className="focus">
+                  Date
+                </th>
+                <th tabIndex="0" scope="col" className="focus">
+                  Source language
+                </th>
+                <th tabIndex="0" scope="col" className="focus">
+                  Target language
+                </th>
+                <th tabIndex="0" scope="col" className="focus">
+                  functionality
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.submissions.map((submission, i) => (
+                <Rows
+                  tabIndex="0"
+                  key={i}
+                  data={submission}
+                  //name={name}
+                  //date={date}
+                  // sourceLang={sourceLang}
+                  //targetLang={targetLang}
+                />
+              ))}
+            </tbody>
+          </table>
+          <hr />
+          <MultiDropDown />
+        </body>
+      </div>
+    );
+  }
 }
 
 export default App;

@@ -1,22 +1,102 @@
 .App {
+  height:500px;
+  overflow:scroll;
+}
+
+/*.cell:focus, .inner-cell:focus {
+  outline: none;
+ }
+
+ .cell:focus > .inner-cell {
+   outline: 1px solid red;
+ }*/
+
+table {
+  border-collapse: collapse;
+  
+}
+
+td {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+th, td {
+  padding: 5px;
+  
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+tr:nth-child(2) {
+  padding: 10px;
+  
 }
 
-.App-link {
-  color: #09d3ac;
+
+
+.table-close-window-icon:hover {
+  color:black;
 }
+
+table {
+
+  
+    table-layout: fixed;
+    width: 100%;
+    
+    border-collapse: collapse;
+    border: 1px 	#EFF0F4 solid;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  thead th{
+    position:sticky;
+    top:0;
+    border-bottom: 1px black solid;
+  }
+
+  thead th:nth-child(1) {
+    width: 28%;
+
+   
+  }
+  
+  thead th:nth-child(2) {
+    width: 23%;
+  }
+  
+  thead th:nth-child(3), thead th:nth-child(4) {
+    width: 15%;
+  }
+
+ 
+  thead th:nth-child(5),   thead th:nth-child(6), thead th:nth-child(7) {
+      width:30%;
+  }
+
+  thead th:nth-child(8) {
+    width:30%;
+  }
+
+  tbody tr:nth-child(even) {
+   
+  }
+  
+  th {
+      letter-spacing: 1px;
+      background-color: white;
+      color: black;
+      
+      
+  }
+  
+ 
+  
+  
+
+  tr td{
+    line-height: 3.5rem;
+  }
+  
+ 
+
+
