@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import RowChildren from "../RowChildren";
 
+
 class Rows extends Component {
   state = {
     expand: false
@@ -21,6 +22,7 @@ class Rows extends Component {
           <td tabIndex="0">{this.props.data.targetLang}</td>
           <td tabIndex="0"></td>
         </tr>
+       
         {this.state.expand &&
           this.props.data.files.map((subFiles, i) => (
             <RowChildren key={i} data={subFiles} />

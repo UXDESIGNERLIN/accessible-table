@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import Rows from "./Rows";
 import "./App.css";
 import MultiDropDown from "./MultiDropDown";
+import { RowForward } from "./RowsForward";
 
 class App extends Component {
+  
   state = {
     submissions: [
       {
@@ -42,8 +44,45 @@ class App extends Component {
         targetLang: "op"
       }
     ],
-    styleFocus: false
+    styleFocus: false,
+    mouseDown: false
   };
+
+  myRef = React.createRef();
+  
+
+  
+
+  testRef = () => {
+   
+    this.setState({mouseDown: true})
+    this.myRef.current.blur();
+    console.log("testing", this.myRef.current);
+  }
+
+  testTwo = () => {
+    console.log("testUp");
+    this.myRef.current.blur();
+   // if(this.state.mouseDown) {
+     // this.myRef.current.blur()
+  //  }
+  }
+
+  testThree = () => {
+    console.log("testFocus");
+    if(this.state.mouseDown) {
+      this.myRef.current.blur()
+    }
+   // this.setState({mouseDown: false})
+   else this.myRef.current.focus();
+   this.setState({mouseDown:false})
+  }
+
+  keyDown = () => {
+    this.myRef.current.focus()
+  }
+  
+
   handleFocus = () => {
     this.setState({ styleFocus: !this.state.styleFocus });
   };
@@ -75,16 +114,16 @@ class App extends Component {
                 >
                   Name
                 </th>
-                <th tabIndex="0" scope="col" className="focus">
+                <th tabIndex="0" scope="col" className="focus"   ref={this.myRef} onMouseDown={this.testRef} onMouseUp={this.testTwo} onFocus={this.testThree} >
                   Date
                 </th>
-                <th tabIndex="0" scope="col" className="focus">
+                <th tabIndex="0" scope="col" className="focus" >
                   Source language
                 </th>
                 <th tabIndex="0" scope="col" className="focus">
                   Target language
                 </th>
-                <th tabIndex="0" scope="col" className="focus">
+                <th tabIndex="0" scope="col" className="focus" >
                   functionality
                 </th>
               </tr>
@@ -104,11 +143,13 @@ class App extends Component {
             </tbody>
           </table>
           <hr />
+          
           <MultiDropDown />
         </body>
       </div>
     );
   }
 }
+
 
 export default App;
