@@ -1,33 +1,45 @@
 import React, { Component } from "react";
+import "./style.css";
 
 class MultiDropDown extends Component {
+  state = {
+    mainMenu: false,
+    subMenu: false
+  }
+  
+  openMainMenu = () => {
+    this.setState({mainMenu:!this.state.mainMenu})
+  }
+
+  openSubMenu = () => {
+    this.setState({subMenu:true})
+  }
+  closeSubMenu= () => {
+    this.setState({subMenu:!this.state.subMenu})
+  }
   render() {
     return (
-      <div class="dropdown">
-        <div
-          class="language-picker js-language-picker"
-          data-trigger-class="btn btn--subtle js-tab-focus"
-        >
-          <form action="" class="language-picker__form">
-            <label for="language-picker-select">Select your language</label>
-
-            <select name="language-picker-select" id="language-picker-select">
-              <option lang="de" value="deutsch">
-                Deutsch
-              </option>
-              <option lang="en" value="english" selected>
-                English
-              </option>
-              <option lang="fr" value="francais">
-                Français
-              </option>
-              <option lang="it" value="italiano">
-                Italiano
-              </option>
-            </select>
-          </form>
-        </div>
-      </div>
+      <React.Fragment>
+      <div tabIndex="0" className="dropdown" onClick={this.openMainMenu}>
+      chialingho@translations.com</div>
+      {this.state.mainMenu && <ul tabIndex="0" className="menu main-menu">
+      <li tabIndex="0" onFocus={this.openSubMenu} onClick={this.closeSubMenu}>Languages
+            {this.state.subMenu && <ul  className="menu sub-menu">
+              <li tabIndex="0">English</li>
+              <li tabIndex="0">Spanish</li>
+              <li tabIndex="0">German</li>
+              <li tabIndex="0">English</li>
+              <li tabIndex="0">Spanish</li>
+              <li tabIndex="0">German</li>
+            </ul>}
+          </li>
+          <li tabIndex="0">Logout</li>
+          <li tabIndex="0" className="middle">Account Setting</li>
+         
+      </ul>}
+    
+   </React.Fragment>
+ 
     );
   }
 }

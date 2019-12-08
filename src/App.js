@@ -47,42 +47,52 @@ class App extends Component {
     styleFocus: false,
     mouseDown: false
   };
-
   myRef = React.createRef();
-  sourceRef = React.createRef();
-  targetRef = React.createRef();
+// myRef = null;
 
-  
-  
+ setRef = (e) => {
+   this.myRef=e
+ }
+ 
+ // sourceRef = React.createRef();
+ // targetRef = React.createRef();
 
-  handleMouseDown = () => {
+   defaultProps = {
+   ref: this.myRef,
    
-    this.setState({mouseDown: true})
-    this.myRef.current.blur();
-    console.log("testing", this.myRef.current);
-  }
+   // ref: this.setRef,
+    //:()=>{
+    //  React.createRef()
+  //  },
+    //ref1:React.createRef(),
+    onMouseDown : (e)=>{
+      
+      
+      this.setState({mouseDown: true})
+      this.myRef.current.blur();
+      console.log("testing", this.state, e);
+    },
 
-  handleMouseUp = () => {
-    console.log("testUp");
-    this.myRef.current.blur();
-   // if(this.state.mouseDown) {
-     // this.myRef.current.blur()
-  //  }
-  }
+    onMouseUp : () => {
+      console.log("testUp", this.state);
+      this.defaultProps.ref.current.blur();
+      //this.setState({mouseDown:false})
+    },
 
-  handleFocus = () => {
-    console.log("testFocus");
-    if(this.state.mouseDown) {
-      this.myRef.current.blur()
+    onFocus : () => {
+      console.log("testFocus",this.state);
+      if(this.state.mouseDown) {
+        this.defaultProps.ref.current.blur()
+      }
+     // this.setState({mouseDown: false})
+     //else this.myRef.current.focus();
+     this.setState({mouseDown:false})
     }
-   // this.setState({mouseDown: false})
-   else this.myRef.current.focus();
-   this.setState({mouseDown:false})
+    
   }
+  
 
-  /*handleFocus = () => {
-    this.setState({ styleFocus: !this.state.styleFocus });
-  };*/
+  
   render() {
     const { name, date, sourceLang, targetLang } = this.state;
     return (
@@ -102,27 +112,21 @@ class App extends Component {
                 <th tabIndex="0" scope="col">
                   FileOrFolder
                 </th>
-                <th tabIndex="0" scope="col" 
+                <th tabIndex="0" scope="col"  
                   
                 >
                   Name
                 </th>
-                <th tabIndex="0" scope="col" ref={this.myRef} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} onFocus={this.handleFocus} >
+                <th tabIndex="0" scope="col"   {...this.defaultProps} >
                   Date
                 </th>
-                <th tabIndex="0" scope="col" ref={this.sourceRef} onMouseDown={()=>{ this.setState({mouseDown: true})
-    this.sourceRef.current.blur()}} onMouseUp={()=>{this.sourceRef.current.blur()}} onFocus={()=>{ if(this.state.mouseDown) {
-      this.sourceRef.current.blur()
-    }
-   // this.setState({mouseDown: false})
-   else this.sourceRef.current.focus();
-   this.setState({mouseDown:false})}}>
+                <th tabIndex="0" scope="col" >
                   Source language
                 </th>
-                <th tabIndex="0" scope="col" ref={this.targetRef} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} onFocus={this.handleFocus}>
+                <th tabIndex="0" scope="col"  {...this.defaultProps}>
                   Target language
                 </th>
-                <th tabIndex="0" scope="col"  >
+                <th tabIndex="0" scope="col"   >
                   functionality
                 </th>
               </tr>

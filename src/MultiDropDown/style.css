@@ -1,0 +1,40 @@
+.menu {
+   
+    margin:0;
+    padding:10px;
+    list-style: none;
+    white-space:nowrap;
+    margin-top: 20px;
+    border-radius: 15px;
+    
+}
+
+.main-menu {
+    width:10%;
+    position: relative;
+}
+
+.main-menu, .sub-menu {
+    border: 1px solid gray;
+    
+}
+
+.sub-menu {
+    
+    position: absolute;
+    top: -10px;
+    left: calc(100% + 10px);
+}
+
+.mainMenu > li {
+    padding: 10px;
+    
+    
+   
+}
+
+.middle {
+    border-top:none;
+    border-bottom:none;
+}
+
